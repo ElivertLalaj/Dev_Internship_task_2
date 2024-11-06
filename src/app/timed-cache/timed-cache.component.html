@@ -1,0 +1,27 @@
+<div>
+    <h2>Timed Key-Value Store</h2>
+
+    <label>
+      Key:
+      <input type="number" [(ngModel)]="key" />
+    </label>
+    <label>
+      Value:
+      <input type="number" [(ngModel)]="value" />
+    </label>
+    <label>
+      Duration (ms):
+      <input type="number" [(ngModel)]="duration" />
+    </label>
+
+    <div>
+      <button (click)="onSet()">Set Key-Value</button>
+      <button (click)="onGet()">Get Value</button>
+      <button (click)="onCount()">Count Unexpired Keys</button>
+    </div>
+
+    <div>
+      <p><strong>Get Result:</strong> {{ getResult }}</p>
+      <p><strong>Count Result:</strong> {{ countResult }}</p>
+    </div>
+  </div>

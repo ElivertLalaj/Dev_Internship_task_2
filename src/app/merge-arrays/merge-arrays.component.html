@@ -1,0 +1,33 @@
+<div class="container">
+    <h1>Merge Two Sorted Arrays</h1>
+  
+    <div>
+      <label for="nums1">Array 1 (nums1):</label>
+      <input
+        id="nums1"
+        type="text"
+        [(ngModel)]="nums1Str"
+        placeholder="Enter comma-separated numbers"
+      />
+      <p *ngIf="nums1.length">m (count of initialized elements in nums1): {{ m }}</p>
+    </div>
+  
+    <div>
+      <label for="nums2">Array 2 (nums2):</label>
+      <input
+        id="nums2"
+        type="text"
+        [(ngModel)]="nums2Str"
+        placeholder="Enter comma-separated numbers"
+      />
+      <p *ngIf="nums2.length">n (count of elements in nums2): {{ n }}</p>
+    </div>
+  
+    <button (click)="mergeArrays()">Merge Arrays</button>
+  
+    <div *ngIf="mergedArray.length" class="result">
+      <h2>Merged Array:</h2>
+      <p>{{ mergedArray.join(', ') }}</p>
+    </div>
+  </div>
+  

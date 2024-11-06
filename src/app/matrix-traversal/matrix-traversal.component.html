@@ -1,0 +1,55 @@
+<div class="matrix-container">
+    <h2>Matrix Traversal</h2>
+  
+    <form [formGroup]="matrix" (ngSubmit)="onSubmit()" class="matrix-form">
+      <div class="input-group">
+        <label>Rows:</label>
+        <input type="number" formControlName="rows" />
+      </div>
+      <div class="input-group">
+        <label>Columns:</label>
+        <input type="number" formControlName="cols" />
+      </div>
+      <button type="submit" id="generateMatrix">Generate Rows  and Columns</button>
+
+    </form>
+  
+    <section class="matrix-input-section">
+      <form [formGroup]="tableInput" (ngSubmit)="onSubmitTableForm()">
+        <div class="table-container" *ngIf="formIsComplete">
+          <table class="input-table">
+            <tr *ngFor="let row of input.controls; let rowIndex = index" [formArrayName]="rowIndex">
+              <td *ngFor="let col of getRowControls(rowIndex).controls; let colIndex = index">
+                <input
+                  type="number"
+                  [formControlName]="colIndex"
+                  (input)="matrixValueChanged(rowIndex, colIndex, $event)"
+                  [class.highlight]="isPartOfPath(rowIndex, colIndex)"
+                />
+              </td>
+            </tr>
+          </table>
+          <button type="submit" id="showTable" (click)="toggleButtonLabel()">{{ buttonLabel }}</button>
+
+
+        </div>
+      </form>
+  
+      <div *ngIf="resultsVisible" class="result-section">
+        <h3>Submitted Matrix</h3>
+        <table class="submitted-table" border="1">
+          <tr *ngFor="let row of submittedMatrix; let rowIndex = index">
+            <td *ngFor="let cell of row; let colIndex = index" 
+                [class.highlight]="isPartOfPath(rowIndex, colIndex)">
+              {{ cell }}
+            </td>
+          </tr>
+        </table>
+      </div>
+  
+      <div *ngIf="maxMoves !== null" class="moves-info">
+        <p><strong>Maximum Moves:</strong> {{ maxMoves }}</p>
+      </div>
+    </section>
+  </div>
+  
